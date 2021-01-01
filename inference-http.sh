@@ -1,0 +1,1 @@
+curl http://localhost:8080/predictions/densenet161 -T kitten_small.jpg
