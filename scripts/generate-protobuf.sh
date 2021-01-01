@@ -1,0 +1,1 @@
+python -m grpc_tools.protoc --proto_path=../serve/frontend/server/src/main/resources/proto/ --python_out=../serve/ts_scripts --grpc_python_out=../serve/ts_scripts ../serve/frontend/server/src/main/resources/proto/inference.proto ../serve/frontend/server/src/main/resources/proto/management.proto

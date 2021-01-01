@@ -1,0 +1,7 @@
+torchserve
+torch-model-archiver
+grpcio
+protobuf
+grpcio-tools
+docker
+jupyter
