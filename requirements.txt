@@ -5,3 +5,4 @@ protobuf
 grpcio-tools
 docker
 jupyter
+requests
