@@ -7,4 +7,5 @@ docker run --rm \
         -p 7070:7070 -p 7071:7071 \
         --name mar \
         tarsioonofrio/torch-serve-test \
-        torchserve --model-store=/home/model-server/model-store/ --models densenet161.mar #all
+        torchserve --model-store=/home/model-server/model-store/ \
+        --models densenet161=densenet161.mar fastrcnn=fastrcnn.mar
