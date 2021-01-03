@@ -6,3 +6,5 @@ grpcio-tools
 docker
 jupyter
 requests
+torch
+torchvision
