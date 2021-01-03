@@ -16,11 +16,11 @@ class Service:
 
 class MultiProcessingService:
     def __init__(self):
-        url_classification = 'http://localhost:8080/predictions/densenet161_gpu'
-        url_detection = 'http://localhost:8080/predictions/fastrcnn_gpu'
+        url_classification = 'http://localhost:8080/predictions/densenet161_batch'
+        # url_detection = 'http://localhost:8080/predictions/fastrcnn_batch'
 
         self.path_classification = '../serve/examples/image_classifier/kitten.jpg'
-        self.path_detection = '../serve/examples/object_detector/persons.jpg'
+        # self.path_detection = '../serve/examples/object_detector/persons.jpg'
 
         self.service_classification = Service(url_classification)
         # self.service_detection = Service(url_detection)
@@ -35,10 +35,10 @@ class MultiProcessingService:
 
 def single_process():
     url_classification = 'http://localhost:8080/predictions/densenet161'
-    url_detection = 'http://localhost:8080/predictions/fastrcnn'
+    # url_detection = 'http://localhost:8080/predictions/fastrcnn'
 
     path_classification = '../serve/examples/image_classifier/kitten.jpg'
-    path_detection = '../serve/examples/object_detector/persons.jpg'
+    # path_detection = '../serve/examples/object_detector/persons.jpg'
 
     service_classification = Service(url_classification)
     # service_detection = Service(url_detection)
@@ -53,8 +53,8 @@ def single_process():
 
 
 def multi_process():
-    path_classification = '../serve/examples/image_classifier/kitten.jpg'
-    path_detection = '../serve/examples/object_detector/persons.jpg'
+    # path_classification = '../serve/examples/image_classifier/kitten.jpg'
+    # path_detection = '../serve/examples/object_detector/persons.jpg'
     service = MultiProcessingService()
     with multiprocessing.Pool(2) as p:
         p.map(service, range(10))
@@ -68,25 +68,25 @@ def main(multi=False):
         end = time.time()
     else:
         url = 'http://localhost:8081/models'
+
         params_class = (
             ('url', 'densenet161.mar'),
-            ('model_name', 'densenet161_gpu'),
+            ('model_name', 'densenet161_batch'),
             ('batch_size', '16'),
             ('max_batch_delay', '200'),
         )
 
-        params_det = (
-            ('url', 'fastrcnn.mar'),
-            ('model_name', 'fastrcnn_gpu'),
-            ('batch_size', '16'),
-            ('max_batch_delay', '200'),
-        )
+        # params_det = (
+        #     ('url', 'fastrcnn.mar'),
+        #     ('model_name', 'fastrcnn_batch'),
+        #     ('batch_size', '16'),
+        #     ('max_batch_delay', '200'),
+        # )
 
-        response = requests.post('http://localhost:8081/models', params=params_class)
+        response = requests.post(url, params=params_class)
         print(response)
 
-
-        # response = requests.post('http://localhost:8081/models', params=params_det)
+        # response = requests.post(url, params=params_det)
         # print(response)
 
         start = time.time()
